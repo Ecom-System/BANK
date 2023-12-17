@@ -6,29 +6,22 @@ const links = [{
 	"label": "Home"
 },
 {
-	"link": "/background",
-	"label": "Background"
+	"link": "/login",
+	"label": "Login"
 },
 {
-	"link": "/findIR",
-	"label": "Find IR"
+	"link": "/register",
+	"label": "Register"
+}
+]
+const links_user = [{
+	"link": "/dashboard",
+	"label": "Dashboard"
 },
 {
-	"link": "/library",
-	"label": "Library"
-},
-{
-	"link": "/search",
-	"label": "Search"
-	// },
-	// {
-	// 	"link": "/admin-mt19937/login",
-	// 	"label": "Admin Login"
-},
-{
-	"link": "/admin-mt19937/logout",
+	"link": "/logout",
 	"label": "Logout"
-},
+}
 ]
 
-export { HEADER_HEIGHT, links }
+export { HEADER_HEIGHT, links, links_user }

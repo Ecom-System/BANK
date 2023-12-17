@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
 	root: {
 		position: 'relative',
 		color: theme.white,
-		backgroundColor: "#a7d489",
+		backgroundColor: "#394867",
 		marginBottom: '10px',
 	},
 
@@ -55,13 +55,13 @@ const useStyles = createStyles((theme) => ({
 		padding: '8px 20px',
 		borderRadius: theme.radius.sm,
 		textDecoration: 'none',
-		color: '#ffffff',
+		color: '#F1F6F9',
 		fontSize: theme.fontSizes.md,
 		fontWeight: 600,
 
 		'&:hover': {
-			color: '#737373',
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+			color: '#394867',
+			backgroundColor: '#F1F6F9',
 		},
 
 		[theme.fn.smallerThan('sm')]: {
@@ -72,8 +72,8 @@ const useStyles = createStyles((theme) => ({
 
 	linkActive: {
 		'&, &:hover': {
-			backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-			color: "#000000",
+			backgroundColor: '#F1F6F9',
+			color: "#394867",
 		},
 	},
 }));

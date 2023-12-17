@@ -3,15 +3,16 @@ import { showNotification } from '@mantine/notifications';
 import Cookies from "js-cookie";
 import { useEffect } from 'react';
 
-export function AdminLogout() {
+export default function AdminLogout() {
 	const router = useRouter();
 
 	useEffect(() => {
 
-		const isLoggedIn = Cookies.get('admin');
+		const isLoggedIn = Cookies.get('email');
 		router.push('/');
 		if (isLoggedIn) {
-			Cookies.remove("admin");
+			Cookies.remove("email");
+            Cookies.remove("account");
 			router.reload();
 
 			showNotification({
@@ -28,5 +29,4 @@ export function AdminLogout() {
 		<></>
 	);
 }
-
 

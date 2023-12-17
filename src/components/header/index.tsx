@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { HEADER_HEIGHT, links } from './data';
+import { HEADER_HEIGHT, links , links_user} from './data';
 import useStyles from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie';
 
 
-// interface HeaderResponsiveProps {
-//   links: { link: string; label: string }[];
-// }
+
 
 export default function HeaderResponsive() {
 	const router = useRouter();
@@ -27,15 +25,13 @@ export default function HeaderResponsive() {
 	useEffect(() => {
 		// console.log('active= ' + active + ", URL = " + router.asPath);
 		setActive(router.asPath);
-		if (Cookies.get('admin'))
+		if (Cookies.get('email'))
 			setIsLoggedIn(true);
-		console.log(router.asPath + " , " + Cookies.get('admin') + " --> " + isLoggedIn);
-		console.log(process.cwd());
 
 
 	}, [router.asPath]);
 
-	const itemsAdmin = links.map((link) => (
+	const itemsLoggedIn = links_user.map((link) => (
 		<Link
 			key={link.label}
 			href={link.link}
@@ -49,30 +45,27 @@ export default function HeaderResponsive() {
 			{link.label}
 		</Link>
 	));
-	const items = links
-		.filter((link) => link.label !== "Logout") // exclude links with label "Logout"
-		.map((link) => (
-			<Link
-				key={link.label}
-				href={link.link}
-				className={cx(classes.link, { [classes.linkActive]: active === link.link })}
-				onClick={(event) => {
-					//event.preventDefault();
-					setActive(link.link);
-					close();
-				}}
-			>
-				{link.label}
-			</Link>
-		));
-
+	const itemsLoggedOut = links.map((link) => (
+		<Link
+			key={link.label}
+			href={link.link}
+			className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+			onClick={(event) => {
+				//event.preventDefault();
+				setActive(link.link);
+				close();
+			}}
+		>
+			{link.label}
+		</Link>
+	));
 
 	return (
 		<Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
 			<Container className={classes.header}>
-				<Text color="white" size={28}>IUPACpalV2</Text>
+				<Text color="white" size={28}>৳ KARI</Text>
 				<Group spacing={5} className={classes.links}>
-					{isLoggedIn == true ? itemsAdmin : items}
+					{isLoggedIn == true ? itemsLoggedIn : itemsLoggedOut}
 				</Group>
 
 				<Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
@@ -80,7 +73,7 @@ export default function HeaderResponsive() {
 				<Transition transition="pop-top-right" duration={200} mounted={opened}>
 					{(styles) => (
 						<Paper className={classes.dropdown} withBorder style={styles}>
-							{isLoggedIn == true ? itemsAdmin : items}
+							{isLoggedIn == true ? itemsLoggedIn : itemsLoggedOut}
 						</Paper>
 					)}
 				</Transition>
